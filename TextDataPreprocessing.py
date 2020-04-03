@@ -81,8 +81,12 @@ class TextData:#text size:(n,len),type:list(text)
                     data_text[m][n] = vocab['UNK']
         return np.array(data_text)
     def text_tf_idf(self,text):#生成TFIDF矩阵
+        token=self.text_token(text)
+        token=[" ".join(j) for j in token]
+        print(token)
         tf_idf_value = TfidfVectorizer()
-        tf_idf_matrix = tf_idf_value.fit_transform(text)
+        tf_idf_matrix = tf_idf_value.fit_transform(token)
+        print(tf_idf_value.vocabulary_)
         return  tf_idf_matrix.toarray()
 
 if __name__ == '__main__':
